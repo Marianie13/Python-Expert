@@ -1,2 +1,2 @@
 # Python-Expert
-This repository is to the track
+This repository contains my Python work, from beginner to advanced level
