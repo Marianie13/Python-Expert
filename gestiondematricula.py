@@ -89,7 +89,7 @@ while True:
     opcion = int(input ('digite la opcion: '))
     
     if opcion == 1:
-        matricularEstudiante()
+        
     elif opcion ==2: 
         asignarDocente()
     elif opcion ==3: 
