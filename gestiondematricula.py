@@ -5,6 +5,7 @@ horarios = []
 modificar = ['Nombre', 'Curso']
 eliminarestudinte = []
 cambiodocente = []
+modificarhorario = []
 
 
 #funcion para matricular un estudiante
@@ -42,7 +43,7 @@ def asignarDocente():
 #TODO Función cambio de docente asignado
 def cambioDocente():
     nombre = input('Digite el nombre del docente a modificar : ')
-    docente_encontrado = None
+    
     
     #Buscar el docente en la lista
     for docente in docentes:
@@ -91,7 +92,44 @@ def asignarHorario():
          print(f'Horario asignado al curso:  {curso}, {días} a las {hora} ')
     else: 
         print(f'Opcion de curso no valida, recuerde que solo hay {len(cursos)} cursos ')
+
+#TODO función modificación de horarios de clase
+
+def modificarhorario():
+    nombre = input('Digite el curso de cambio de horario: ')
+    for i, curso in enumerate(cursos):
+        print(f"{i+1}: {curso}")
         
+    cursoSeleccionado = int(input("Ingrese el número del curso: "))
+    if 0 < cursoSeleccionado <= len(cursos):
+        curso = cursos[cursoSeleccionado - 1]
+        
+        horario_encontrado = None
+        for horario in horarios:
+            if horario['curso'] == curso:
+                horario_encontrado = horario
+                break
+        
+        if horario_encontrado:
+            print("Seleccione el dato a modificar:")
+            print("1: Días")
+            print("2: Hora")
+            
+        opcion_modificar = int(input("Digite el número de la opción a modificar: "))
+
+        if opcion_modificar == 1:  # Modificar los días
+                nuevos_dias = input("Ingrese los nuevos días de clase (ej: lunes y miércoles): ")
+                horario_encontrado['días'] = nuevos_dias
+                print(f"Información actualizada: Días del curso {curso}: {nuevos_dias}")
+
+        elif opcion_modificar == 2:  # Modificar la hora
+                nueva_hora = input("Ingrese la nueva hora de la clase (ej: 7 pm): ")
+                horario_encontrado['hora'] = nueva_hora
+                print(f"Información actualizada: Hora del curso {curso}: {nueva_hora}")
+
+        else:
+                print("Opción no válida.")
+                  
 #TODO Función para editar un estudiante matriculado
 def modificarEstudiante():
     nombre = input('Digite el nombre de estudiante: ')
@@ -205,7 +243,7 @@ while True:
     elif opcion ==7: 
         modificarEstudiante()
     elif opcion ==8: 
-        modificarEstudiante()
+        cambioDocente()
     elif opcion ==9: 
         cambiodocente()
     elif opcion ==9: 
