@@ -6,6 +6,7 @@ modificar = ['Nombre', 'Curso']
 eliminarestudinte = []
 cambiodocente = []
 modificarhorario = []
+estadoSistema = []
 
 
 #funcion para matricular un estudiante
@@ -43,7 +44,6 @@ def asignarDocente():
 #TODO Función cambio de docente asignado
 def cambioDocente():
     nombre = input('Digite el nombre del docente a modificar : ')
-    
     
     #Buscar el docente en la lista
     for docente in docentes:
@@ -169,7 +169,7 @@ def modificarEstudiante():
     else:
         print("Estudiante no encontrado.")
 
-#TODO Funcion para eliminar astudinte
+#TODO Funcion para eliminar astudiante
 
 def eliminarEstudiante():
     nombre = input('Digite el nombre del estudiante a eliminar: ')
@@ -186,8 +186,38 @@ def eliminarEstudiante():
         estudiantes.remove(estudiante_encontrado)
         print(f'Estudiante {nombre} eliminado exitosamente.')
     else:
-        print('Estudiante no encontrado.') 
+        print('Estudiante no encontrado.')
         
+#TODO Funcion mostar el estado del sistema 
+def estadoSistema():
+    print("\n=== Estado Completo del Sistema ===")
+    
+    # Mostrar estudiantes matriculados
+    print("\nEstudiantes Matriculados:")
+    if estudiantes:
+        for estudiante in estudiantes:
+            print(f"- Nombre: {estudiante['nombre']}, Curso: {estudiante['curso']}")
+    else:
+        print("No hay estudiantes matriculados.")
+    
+    # Mostrar docentes asignados
+    print("\nDocentes Asignados:")
+    if docentes:
+        for docente in docentes:
+            print(f"- Nombre: {docente['nombre']}, Curso: {docente['curso']}")
+    else:
+        print("No hay docentes asignados.")
+    
+    # Mostrar horarios asignados
+    print("\nHorarios de los Cursos:")
+    if horarios:
+        for horario in horarios:
+            print(f"- Curso: {horario['curso']}, Días: {horario['días']}, Hora: {horario['hora']}")
+    else:
+        print("No hay horarios asignados.")
+    
+    print("\n===================================\n")
+   
 #mostrar  estudiante             
 def mostrarEstudiantes():
     if estudiantes:
@@ -221,10 +251,12 @@ while True:
     print('4. Mostrar la lista de estuantes matriculados')
     print('5. Mostrar la lista de docentes asigandos')
     print('6. Mostrar horarios de los cursos')
-    print('7. Modificar información de un estudiante')
-    print('8. Cambio docente asignado')
-    print('9. Eliminar estudiante')
-    print('10. Salir')
+    print('7. Modificar horarios de curso')
+    print('8. Modificar información de un estudiante')
+    print('9. Cambio docente asignado')
+    print('10. Eliminar estudiante')
+    print('11. Mostrar el estado del sistema')
+    print('12. Salir')
     
     opcion = int(input ('digite la opcion: '))
     
@@ -241,12 +273,16 @@ while True:
     elif opcion ==6: 
         mostrarHorarios()
     elif opcion ==7: 
-        modificarEstudiante()
+        modificarhorario()
     elif opcion ==8: 
+        modificarEstudiante()
+    elif opcion ==9: 
         cambioDocente()
-    elif opcion ==9: 
-        cambiodocente()
-    elif opcion ==9: 
+    elif opcion ==10: 
+        eliminarEstudiante()
+    elif opcion ==11: 
+        estadoSistema()
+    elif opcion ==12: 
         print('Gracias por usar el sistema de matriculas de dev senior ')
         break
     else:
