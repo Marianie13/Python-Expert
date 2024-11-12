@@ -3,6 +3,7 @@ cursos = ['Java', 'Python']
 docentes = []
 horarios = []
 modificar = ['Nombre', 'Curso']
+eliminarestudinte = []
 
 #funcion para matricular un estudiante
 def matricularEstudiante():
@@ -35,7 +36,45 @@ def asignarDocente():
          print(f'Docente: {nombreDocente}, asignado en el curso {curso} ')
     else:
         print(f'Opcion de curso no valida, recuerde que solo hay {len(cursos)} cursos ')
+#TODO Función cambio de docente asignado
+def camboDocente():
+    nombre = input('Digite el nombre del docente : ')
+    estudiante_encontrado = None
+    
+    # Buscar el estudiante en la lista de matriculados 
+    for estudiante in estudiantes:
+        if estudiante['nombre'] == nombre:
+            estudiante_encontrado = estudiante
+            break
+    
+    # Estudiante encontrado 
+    if estudiante_encontrado:
+        print("Seleccione el dato a modificar:")
+        for i, opcion in enumerate(modificar):
+            print(f'{i+1}: {opcion}')
         
+        # Mostrar las opciones a modificar 
+        opcion_modificar = int(input("Digite el número de la opción a modificar: "))
+        
+        if opcion_modificar == 1:  # Modificar el nombre
+            nuevo_nombre = input("Ingrese el nuevo nombre: ")
+            estudiante_encontrado['nombre'] = nuevo_nombre
+            print(f"Información actualizada: Nuevo nombre del estudiante: {nuevo_nombre}")
+        
+        elif opcion_modificar == 2:  # Modificar el curso
+            print("Seleccione el nuevo curso del estudiante:")
+            for i, curso in enumerate(cursos):
+                print(f'{i+1}: {curso}')
+            
+            nuevo_curso = int(input('Digite el número del curso: '))
+            if 0 < nuevo_curso <= len(cursos):
+                estudiante_encontrado['curso'] = cursos[nuevo_curso - 1]
+                print(f"Información actualizada: Estudiante {nombre}, nuevo curso: {estudiante_encontrado['curso']}")
+            else:
+                print(f"Opción de curso no válida, recuerde que solo hay {len(cursos)} cursos")
+    else:
+        print("Estudiante no encontrado.")
+       
 #Función para asignar horario a un curso 
 def asignarHorario():
     print('Seleccionar el curso al que desea asignar un horario')
@@ -53,7 +92,7 @@ def asignarHorario():
     else: 
         print(f'Opcion de curso no valida, recuerde que solo hay {len(cursos)} cursos ')
         
-# Función para editar un estudiante matriculado
+#TODO Función para editar un estudiante matriculado
 def modificarEstudiante():
     nombre = input('Digite el nombre de estudiante: ')
     estudiante_encontrado = None
@@ -91,8 +130,27 @@ def modificarEstudiante():
                 print(f"Opción de curso no válida, recuerde que solo hay {len(cursos)} cursos")
     else:
         print("Estudiante no encontrado.")
- 
- #mostrar  estudiante             
+
+#TODO Funcion para eliminar astudinte
+
+def eliminarEstudiante():
+    nombre = input('Digite el nombre del estudiante a eliminar: ')
+    estudiante_encontrado = None
+    
+    #Buscar el estudiante en la lista de matriculados 
+    for estudiante in estudiantes:
+        if estudiante['nombre'] == nombre:
+            estudiante_encontrado = estudiante
+            break
+    
+    #Eliminar el estudiante
+    if estudiante_encontrado:
+        estudiantes.remove(estudiante_encontrado)
+        print(f'Estudiante {nombre} eliminado exitosamente.')
+    else:
+        print('Estudiante no encontrado.') 
+        
+#mostrar  estudiante             
 def mostrarEstudiantes():
     if estudiantes:
         print ('Lista de estuantes matriculados')
@@ -125,8 +183,9 @@ while True:
     print('4. Mostrar la lista de estuantes matriculados')
     print('5. Mostrar la lista de docentes asigandos')
     print('6. Mostrar horarios de los cursos')
-    print('7. Modificar información de un estudante')
-    print('8. Salir')
+    print('7. Modificar información de un estudiante')
+    print('8. Eliminar estudiante')
+    print('9. Salir')
     
     opcion = int(input ('digite la opcion: '))
     
@@ -145,6 +204,8 @@ while True:
     elif opcion ==7: 
         modificarEstudiante()
     elif opcion ==8: 
+        eliminarEstudiante()
+    elif opcion ==9: 
         print('Gracias por usar el sistema de matriculas de dev senior ')
         break
     else:
