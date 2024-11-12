@@ -125,7 +125,7 @@ while True:
     print('4. Mostrar la lista de estuantes matriculados')
     print('5. Mostrar la lista de docentes asigandos')
     print('6. Mostrar horarios de los cursos')
-    print('7. Modificar información de un estudiante')
+    print('7. Modificar información de un estudante')
     print('8. Salir')
     
     opcion = int(input ('digite la opcion: '))
@@ -149,6 +149,7 @@ while True:
         break
     else:
         print('Opcion no valida, intente de nuevo')
+        
         
        
     
